@@ -1,2 +1,2 @@
 # Netstack
-Stack-based programming language
+A thing that does things

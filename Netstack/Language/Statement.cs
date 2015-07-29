@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Netstack.Language.Exceptions;
 
 namespace Netstack.Language
 {
@@ -21,7 +22,7 @@ namespace Netstack.Language
         /// Evaluate() method instead.
         /// </summary>
         /// <param name="stack"></param>
-        public void Execute(NetStack stack)
+        public override void Execute(NetStack stack)
         {
             stack.Push(this);
         }
@@ -30,8 +31,20 @@ namespace Netstack.Language
         {
             foreach(var token in Tokens)
             {
-                token.Execute(stack);
+                try
+                {
+                    token.Execute(stack);
+                }
+                catch (StackEmptyException)
+                {
+                    throw new StackEmptyException(string.Format("\"{0}\" attempted to pop a frame while the stack was empty.", token.GetType().FullName));
+                }
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("({0})", string.Join(" ", Tokens.Select(t => t.ToString())));
+;        }
     }
 }

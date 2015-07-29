@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Netstack.Language.Literals
+namespace Netstack.Language.Framework.Netstack
 {
-    class StringLiteral : Literal
+    class Grab :Function
     {
-        private string value;
-
-        public StringLiteral(string value)
-        {
-            this.value = value;
-        }
-
         public override void Execute(NetStack stack)
         {
+            var offset = stack.Pop<long>();
+            var value = stack.Peek(offset);
             stack.Push(value);
         }
     }

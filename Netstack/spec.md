@@ -35,8 +35,18 @@ Users can define any other alias that doesn't already exist
 
 Special Aliases
 -------------
-A special alias is an alias that 
+A special alias is a special character sequence which
+is used to denote data, such as a literal or a function binding.
 
+The following literals are available:
+
+Boolean:
+	Any character sequence that is either "True" or "False".
+Integer:
+	Any character sequence consisting only of the digits 0-9.
+String:,
+	Any character sequence started and terminated by a quotation mark (`"`).
+	Quotation marks may be escaped by prefixing them with a `\`.
 
 
 Details
@@ -96,18 +106,26 @@ Will result in the following actions being taken:
 Fibonacci sequence:
 
 (
-	(0 =) if
-	(0)
-	(1 =) elseif
-	(1)
-	else
+	# index 0
+	(0) 
 	(
-		dup 1 -
-		fib()
-		swap 2 -
-		fib()
-		+
-	(1 >) if
-) fib() glob
+		# index 1
+		(1)
+		(
+			# any index above 1
+			-- # subtract 1
+			dup fib # acquire the value for this index
+			swap # 
+			--
+			fib
+			+
+		)
+		(dup 1 =) if
+	)
+	(dup 0 =) if
+) .fib defn
+8 fib
 
-5 fib()
+
+( ( 0 ) ( ( 1 ) ( -- dup fib swap -- fib + ) (dup 1 =) if ) (dup 0 =) if ) .fib defn
+8 fib

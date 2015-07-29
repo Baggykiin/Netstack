@@ -1,6 +1,6 @@
 ﻿namespace Netstack.Language.Literals
 {
-    class IntegerLiteral : Function
+    class IntegerLiteral : Literal
     {
         private long value;
 
@@ -9,9 +9,14 @@
             this.value = value;
         }
         
-        public void Execute(NetStack stack)
+        public override void Execute(NetStack stack)
         {
             stack.Push(value);
+        }
+
+        public override string ToString()
+        {
+            return value.ToString();
         }
     }
 }

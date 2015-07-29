@@ -40,15 +40,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Language\Framework\Control\Else.cs" />
+    <Compile Include="Language\Exceptions\StackEmptyException.cs" />
+    <Compile Include="Language\Framework\Control\Break.cs" />
+    <Compile Include="Language\Framework\Control\Defn.cs" />
     <Compile Include="Language\Framework\Control\Exec.cs" />
     <Compile Include="Language\Framework\Control\If.cs" />
     <Compile Include="Language\Framework\IO\Read.cs" />
     <Compile Include="Language\Framework\Math\Add.cs" />
+    <Compile Include="Language\Framework\Math\Decrement.cs" />
     <Compile Include="Language\Framework\Math\Equals.cs" />
+    <Compile Include="Language\Framework\Netstack\Clear.cs" />
+    <Compile Include="Language\Framework\Netstack\Dup.cs" />
+    <Compile Include="Language\Framework\Netstack\Grab.cs" />
+    <Compile Include="Language\Framework\Netstack\Parse.cs" />
+    <Compile Include="Language\Framework\Netstack\Pop.cs" />
+    <Compile Include="Language\Framework\Netstack\Swap.cs" />
+    <Compile Include="Language\Literals\FunctionLabel.cs" />
+    <Compile Include="Language\ILiteral.cs" />
+    <Compile Include="Language\Literals\BooleanLiteral.cs" />
+    <Compile Include="Language\Literals\LateBindingCall.cs" />
     <Compile Include="Language\Literals\StringLiteral.cs" />
     <Compile Include="Language\NetStack.cs" />
     <Compile Include="Language\Parser.cs" />
+    <Compile Include="SyntaxException.cs" />
     <Compile Include="RuntimeException.cs" />
     <Compile Include="Language\SpecialAliasMap.cs" />
     <Compile Include="Language\Function.cs" />
@@ -58,8 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="spec.txt" />
+    <None Include="spec.md" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

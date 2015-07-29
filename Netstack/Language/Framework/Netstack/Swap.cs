@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Netstack.Language.Framework.Math
+namespace Netstack.Language.Framework.Netstack
 {
-    class Equals : Function
+    class Swap :Function
     {
         public override void Execute(NetStack stack)
         {
-            var l = stack.Pop();
-            var r = stack.Pop();
-            stack.Push(l.Equals(r));
+            var top = stack.Pop();
+            var bottom = stack.Pop();
+            stack.Push(top).Push(bottom);
         }
     }
 }

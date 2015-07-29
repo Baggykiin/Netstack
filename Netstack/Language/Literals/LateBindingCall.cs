@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace Netstack.Language.Literals
 {
-    class StringLiteral : Literal
+    class LateBindingCall :Literal
     {
-        private string value;
-
-        public StringLiteral(string value)
+        private string label;
+        public LateBindingCall(string label)
         {
-            this.value = value;
+            this.label = label;
         }
 
         public override void Execute(NetStack stack)
         {
-            stack.Push(value);
+            stack.GetFunction(label).Evaluate(stack);
         }
     }
 }

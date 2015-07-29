@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Netstack.Language.Framework.Math
 {
-    class Equals : Function
+    class Decrement :Function
     {
         public override void Execute(NetStack stack)
         {
-            var l = stack.Pop();
-            var r = stack.Pop();
-            stack.Push(l.Equals(r));
+            stack.Push(stack.Pop<long>() - 1);
         }
     }
 }

@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace Netstack.Language.Literals
 {
-    class StringLiteral : Literal
+    class BooleanLiteral : Literal
     {
-        private string value;
-
-        public StringLiteral(string value)
+        private bool value;
+        public BooleanLiteral(bool value)
         {
             this.value = value;
         }
-
         public override void Execute(NetStack stack)
         {
             stack.Push(value);

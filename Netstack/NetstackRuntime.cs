@@ -9,18 +9,24 @@ namespace Netstack
     {
         private Parser parser = new Parser();
 
-        public NetStack Evaluate(string input)
+        public NetStack Evaluate(NetStack stack, string input)
         {
-            var stack = new NetStack();
             var statement = parser.Parse(input);
             try
             {
                 statement.Evaluate(stack);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 throw new RuntimeException(e);
             }
             return stack;
+        }
+
+        public NetStack Evaluate(string input)
+        {
+            var stack = new NetStack();
+            return Evaluate(stack, input);
         }
     }
 }

@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Netstack.Language.Literals;
 
 namespace Netstack.Language.Framework.Control
 {
-    class Exec : Function
+    class Defn : Function
     {
         public override void Execute(NetStack stack)
         {
-            var statement = stack.Pop() as Statement;
-            statement.Evaluate(stack);
+            var label = stack.Pop<FunctionLabel>();
+            var body = stack.Pop<Statement>();
+            stack.BindFunction(body, label.Label);
         }
     }
 }

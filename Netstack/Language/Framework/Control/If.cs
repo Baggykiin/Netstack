@@ -8,17 +8,21 @@ namespace Netstack.Language.Framework.Control
 {
     class If : Function
     {
-        public void Execute(NetStack stack)
+        public override void Execute(NetStack stack)
         {
-            var condition = stack.Pop() as Statement;
+            var condition = stack.Pop<Statement>();
+            var falseStmt = stack.Pop<Statement>();
+            var trueStmt = stack.Pop<Statement>();
 
-
-            var statement = stack.Pop() as Statement;
-            if (condition != null)
+            condition.Evaluate(stack);
+            var result = stack.Pop<bool>();
+            if (result)
             {
-                condition.Evaluate(stack);
-                var result = (bool)stack.Pop();
-                stack.Flag = result ? true : false;
+                trueStmt.Evaluate(stack);
+            }
+            else
+            {
+                falseStmt.Evaluate(stack);
             }
         }
     }

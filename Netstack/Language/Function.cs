@@ -1,7 +1,12 @@
 ﻿namespace Netstack.Language
 {
-    interface Function
+    abstract class Function
     {
-        void Execute(NetStack stack);
+        public abstract void Execute(NetStack stack);
+
+        public override string ToString()
+        {
+            return this.GetType().Name;
+        }
     }
 }

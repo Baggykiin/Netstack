@@ -3,7 +3,10 @@ using Netstack.Language.Framework.IO;
 using Netstack.Language.Framework.Math;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using Netstack.Language.Literals;
 
 namespace Netstack.Language
 {
@@ -15,10 +18,24 @@ namespace Netstack.Language
         {
             { "+", new Add() },
             { "=", new Equals() },
-            { "if", new If() },
-            { "exec", new Exec() },
-            { "read", new Read() }
+            { "--", new Decrement()}
         };
+
+        public Parser()
+        {
+            var functionType = typeof(Function);
+            var literalType = typeof(Literal);
+            var functions = from t in Assembly.GetExecutingAssembly().GetTypes()
+                            where functionType.IsAssignableFrom(t)
+                            && !literalType.IsAssignableFrom(t)
+                            && !t.IsAbstract
+                            select Activator.CreateInstance(t);
+            foreach (var function in functions)
+            {
+                aliasMap.Add(function.GetType().Name.ToLower(), (Function)function);
+            }
+
+        }
 
         private List<string> Lex(string inputString)
         {
@@ -75,7 +92,7 @@ namespace Netstack.Language
                     nextLexeme.Add(c);
                 }
             }
-            if(nextLexeme.Count > 0)
+            if (nextLexeme.Count > 0)
             {
                 lexemes.Add(new string(nextLexeme.ToArray()));
             }
@@ -99,21 +116,21 @@ namespace Netstack.Language
             var statement = new Statement();
             var innerStatement = new List<string>();
             var depth = 0;
-            foreach(var lexeme in lexemes)
+            foreach (var lexeme in lexemes)
             {
-                if(lexeme == "(")
+                if (lexeme == "(")
                 {
                     if (depth > 0)
                     {
                         innerStatement.Add(lexeme);
                     }
                     depth++;
-                    
+
                 }
-                else if(lexeme == ")")
+                else if (lexeme == ")")
                 {
                     depth--;
-                    if(depth > 0)
+                    if (depth > 0)
                     {
                         innerStatement.Add(lexeme);
                     }
@@ -123,7 +140,7 @@ namespace Netstack.Language
                         innerStatement = new List<string>();
                     }
                 }
-                else if(depth > 0)
+                else if (depth > 0)
                 {
                     innerStatement.Add(lexeme);
                 }
@@ -132,7 +149,7 @@ namespace Netstack.Language
                     var function = GetFunction(lexeme);
                     statement.Tokens.Add(function);
                 }
-                
+
             }
             return statement;
         }
@@ -141,7 +158,6 @@ namespace Netstack.Language
         private Function GetFunction(string lexeme)
         {
             Function result;
-
             // Look for a special alias first. This covers all literals.
             if (SpecialAliasMap.TryParse(lexeme, out result))
             {
@@ -152,18 +168,30 @@ namespace Netstack.Language
             {
                 return aliasMap[lexeme];
             }
+            // Finally, check if the lexeme follows the syntax of a function name.
+            else if (validIdentifiers.IsMatch(lexeme))
+            {
+                return new LateBindingCall(lexeme);
+            }
             // Function not found, throw an error.
             else
             {
-                throw new ArgumentException(string.Format("Syntax error for \"{0}\": Unknown function.", lexeme));
+                throw new ArgumentException(string.Format("Syntax error for \"{0}\" (Token not recognised).", lexeme));
             }
         }
 
         public Statement Parse(string statement)
         {
-            var lexemes = Lex(statement);
-            var tree = BuildStatementTree(lexemes);
-            return tree;
+            try
+            {
+                var lexemes = Lex(statement);
+                var tree = BuildStatementTree(lexemes);
+                return tree;
+            }
+            catch (Exception e)
+            {
+                throw new SyntaxException(e);
+            }
         }
     }
 }

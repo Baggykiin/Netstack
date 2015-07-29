@@ -1,5 +1,6 @@
 ﻿using Netstack;
 using System;
+using Netstack.Language;
 
 namespace Repl
 {
@@ -12,6 +13,7 @@ namespace Repl
             var runtime = new NetstackRuntime();
 
             bool quitRequested = false;
+            NetStack stack = new NetStack();
             while (!quitRequested)
             {
                 Console.Write("> ");
@@ -23,18 +25,25 @@ namespace Repl
                 {
                     try
                     {
-                        var result = runtime.Evaluate(input);
+                        stack = runtime.Evaluate(stack, input);
                         Console.Write("--> ");
                         var previousColour = Console.ForegroundColor;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(result.ToString());
+                        Console.WriteLine(stack.ToString());
                         Console.ForegroundColor = previousColour;
                     }
-                    catch(RuntimeException e)
+                    catch (RuntimeException e)
                     {
                         var previousColour = Console.ForegroundColor;
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Execution halted: " + e.InnerException.Message);
+                        Console.ForegroundColor = previousColour;
+                    }
+                    catch (SyntaxException e)
+                    {
+                        var previousColour = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Parsing fail: " + e.InnerException.Message);
                         Console.ForegroundColor = previousColour;
                     }
                 }

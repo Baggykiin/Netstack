@@ -4,7 +4,7 @@ namespace Netstack.Language.Framework.Math
 {
     class Add : Function
     {
-        public void Execute(NetStack stack)
+        public override void Execute(NetStack stack)
         {
             var r = stack.Pop();
             var l = stack.Pop();
@@ -21,6 +21,11 @@ namespace Netstack.Language.Framework.Math
                 throw new ArgumentException(string.Format("Cannot add operands of type {0} and {1}", l.GetType().Name, r.GetType().Name));
 
             }
+        }
+
+        public override string ToString()
+        {
+            return "+";
         }
     }
 }

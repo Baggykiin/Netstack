@@ -18,6 +18,11 @@ the data left on the stack is the result of the statement's execution.
 A REPL would usually print this result to the console.
 
 
+Standard Library
+-------------
+Netstack has a small standard library containing all functions used by the language.
+these functions can be found in the `Netstack.Language.Framework` namespace.
+
 Statements
 -------------
 A statement is a sequence that may contain any number of functions and

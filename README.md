@@ -156,9 +156,9 @@ back to the stack.
 
     5 2 +
 
-Control functions are preceded by two statements that get executed when
-the condition is true or false, and one statement that is evaluated to 
-produce the condition.
+Control statements (more correctly, functions) are preceded by two 
+statements that get executed when the condition is true or false, 
+and one statement that is evaluated to produce the condition.
 
 	("input is greater than three")
 	("input is less than three")

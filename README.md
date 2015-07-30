@@ -161,7 +161,7 @@ statements that get executed when the condition is true or false,
 and one statement that is evaluated to produce the condition.
 
 	("input is greater than three")
-	("input is less than three")
+	("input is less than four")
 	(read parseint 3 > )
 	if
 

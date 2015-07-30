@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Netstack.Language.Framework.Netstack
+﻿namespace Netstack.Language.Framework.Stack
 {
     class Grab :Function
     {

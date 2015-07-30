@@ -37,7 +37,7 @@ which gets executed when the condition evaluates to true, one for when it evalua
 to false, and one statement that's evaluated to produce the if-statement's condition,
 like so:
 
-(true-statement) (false-statement) (condition) if
+	(true-statement) (false-statement) (condition) if
 
 When the runtime reaches these statements, they will all get pushed on the stack
 without being evaluated. Then (condition) is evaluated to determine whether 

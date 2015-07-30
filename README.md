@@ -34,7 +34,7 @@ executed as soon as they are encountered.
 To execute the code within a statement, it must be evaluated. This is how control
 statements work. An if-statement, for instance, is preceded by one statement
 which gets executed when the condition evaluates to true, one for when it evaluates
-to false, and one statement that's evaluated to yield the if-statement's condition,
+to false, and one statement that's evaluated to produce the if-statement's condition,
 like so:
 
 (true-statement) (false-statement) (condition) if

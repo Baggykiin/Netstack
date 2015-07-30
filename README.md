@@ -104,6 +104,10 @@ instead of
 
 as they are functionally equivalent.
 
+Also note that equality checks use a single equals sign.
+If assignment is added to the language at a later point,
+it will use a different operator, possibly `<-`.
+
 
 Special Aliases
 -------------

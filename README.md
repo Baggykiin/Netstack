@@ -62,6 +62,8 @@ A literal is a function that always generates the same output. The parser will
 usually translate specific character sequences into literals.
 For instance, the following character sequences will get translated into literals
 
+Character Sequence| Type
+----------|------------
 - "Hello World!"	| string literal
 - 55				| integer literal
 - True				| boolean literal

@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace Netstack.Language.Framework.Math
 {
-    class Decrement :Function
+    class Increment : Function
     {
         public override void Execute(NetStack stack)
         {
-            stack.Push(stack.Pop<long>() - 1);
-        }
-
-        public override string ToString()
-        {
-            return "--";
+            dynamic variable = stack.Pop();
+            stack.Push(++variable);
         }
     }
 }

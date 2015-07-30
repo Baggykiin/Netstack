@@ -35,6 +35,7 @@ namespace Netstack.Language
 
         internal Statement GetFunction(string label)
         {
+
             return boundFunctions[label];
         }
 
@@ -83,10 +84,10 @@ namespace Netstack.Language
             return string.Format("[ {0} ]", string.Join(", ", stack.Select(p => p is string ? "\"" + p + "\"" : p.ToString())));
         }
 
-        public void Clear()
+        public NetStack Clear()
         {
             stack.Clear();
-            boundFunctions.Clear();
+            return this;
         }
 
         public object Peek(long offset)
@@ -117,6 +118,12 @@ namespace Netstack.Language
                 stack.Push(tempStack.Pop());
             }
             return value;
+        }
+
+        public void Reset()
+        {
+            stack.Clear();
+            boundFunctions.Clear();
         }
     }
 }

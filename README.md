@@ -40,8 +40,9 @@ like so:
 	(true-statement) (false-statement) (condition) if
 
 When the runtime reaches these statements, they will all get pushed on the stack
-without being evaluated. Then (condition) is evaluated to determine whether 
-(true-statement) or (false-statement) should be evaluated next.
+without being evaluated. When the If-method is reached, it pops the three statements
+from the stack, evaluates the first, and uses its result to determine which statement
+should be evaluated next.
 
 A statement may also be evaluated manually, using the `eval` command, which 
 pulls a statement from the top of the stack and evaluates it.

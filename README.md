@@ -1,4 +1,4 @@
-﻿Netstack Language Tutorial
+The Netstack Language - Overview
 =============
 
 Netstack is a small, stack-based programming language.
@@ -18,6 +18,11 @@ the data left on the stack is the result of the statement's execution.
 A REPL would usually print this result to the console.
 
 
+Standard Library
+-------------
+Netstack has a small standard library containing all functions used by the language.
+these functions can be found in the `Netstack.Language.Framework` namespace.
+
 Statements
 -------------
 A statement is a sequence that may contain any number of functions and
@@ -29,17 +34,26 @@ executed as soon as they are encountered.
 To execute the code within a statement, it must be evaluated. This is how control
 statements work. An if-statement, for instance, is preceded by one statement
 which gets executed when the condition evaluates to true, one for when it evaluates
-to false, and one statement that's evaluated to yield the if-statement's condition,
+to false, and one statement that's evaluated to produce the if-statement's condition,
 like so:
 
-(true-statement) (false-statement) (condition) if
+	(true-statement) (false-statement) (condition) if
 
 When the runtime reaches these statements, they will all get pushed on the stack
-without being evaluated. Then (condition) is evaluated to determine whether 
-(true-statement) or (false-statement) should be evaluated next.
+without being evaluated. When the If-method is reached, it pops the three statements
+from the stack, evaluates the first, and uses its result to determine which statement
+should be evaluated next.
 
 A statement may also be evaluated manually, using the `eval` command, which 
-pulls a statement from the top of the stack and evaluates it.
+pulls a statement from the top of the stack and evaluates it:
+	
+	(statement) eval
+
+Note that this is subtly different from other languages, as `eval` does not parse
+plain text. However, this is easily achieved by chaining it together with the 
+`parse` method:
+
+	"5 5 +" parse eval
 
 
 Literals
@@ -48,11 +62,13 @@ A literal is a function that always generates the same output. The parser will
 usually translate specific character sequences into literals.
 For instance, the following character sequences will get translated into literals
 
-- "Hello World!"	-> string literal
-- 55				-> integer literal
-- True				-> boolean literal
-- .square			-> function label
-- square			-> late binding function call
+Character Sequence| Type
+----------|------------
+`"Hello World!"`	| string literal
+`55`				| integer literal
+`True`				| boolean literal
+`.square`			| function label
+`square	`		| late binding function call
 
 The first three should be fairly obvious. 
 The last two are covered in the next chapter.
@@ -82,15 +98,17 @@ An alias is a shorthand character sequence that can be used instead of a
 function call. The interpreter internally translates aliases to function
 calls before executing the application. The aliases available in Netstack are:
 
-+  -> add
--  -> subtract
-*  -> multiply
-/  -> divide
-++ -> increment
--- -> decrement
-=  -> equals
-<  -> less than
->  -> greater than
+alias|function
+-----|--------
++  | add
+-  | subtract
+*  | multiply
+/  | divide
+++ | increment
+-- | decrement
+=  | equals
+<  | less than
+>  | greater than
 
 It is therefore entirely possible to write
 
@@ -101,6 +119,10 @@ instead of
 	5 5 +
 
 as they are functionally equivalent.
+
+Also note that equality checks use a single equals sign.
+If assignment is added to the language at a later point,
+it will use a different operator, possibly `<-`.
 
 
 Special Aliases
@@ -134,12 +156,12 @@ back to the stack.
 
     5 2 +
 
-Control functions are preceded by two statements that get executed when
-the condition is true or false, and one statement that is evaluated to 
-produce the condition.
+Control statements (more correctly, functions) are preceded by two 
+statements that get executed when the condition is true or false, 
+and one statement that is evaluated to produce the condition.
 
 	("input is greater than three")
-	("input is less than three")
+	("input is less than four")
 	(read parseint 3 > )
 	if
 

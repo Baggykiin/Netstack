@@ -43,18 +43,28 @@
     <Compile Include="Language\Exceptions\StackEmptyException.cs" />
     <Compile Include="Language\Framework\Control\Break.cs" />
     <Compile Include="Language\Framework\Control\Defn.cs" />
-    <Compile Include="Language\Framework\Control\Exec.cs" />
+    <Compile Include="Language\Framework\Control\Eval.cs" />
     <Compile Include="Language\Framework\Control\If.cs" />
+    <Compile Include="Language\Framework\Control\Label.cs" />
+    <Compile Include="Language\Framework\Control\While.cs" />
+    <Compile Include="Language\Framework\IO\Print.cs" />
     <Compile Include="Language\Framework\IO\Read.cs" />
     <Compile Include="Language\Framework\Math\Add.cs" />
+    <Compile Include="Language\Framework\Math\Subtract.cs" />
     <Compile Include="Language\Framework\Math\Decrement.cs" />
+    <Compile Include="Language\Framework\Math\Divide.cs" />
     <Compile Include="Language\Framework\Math\Equals.cs" />
-    <Compile Include="Language\Framework\Netstack\Clear.cs" />
-    <Compile Include="Language\Framework\Netstack\Dup.cs" />
-    <Compile Include="Language\Framework\Netstack\Grab.cs" />
-    <Compile Include="Language\Framework\Netstack\Parse.cs" />
-    <Compile Include="Language\Framework\Netstack\Pop.cs" />
-    <Compile Include="Language\Framework\Netstack\Swap.cs" />
+    <Compile Include="Language\Framework\Math\GreaterThan.cs" />
+    <Compile Include="Language\Framework\Math\Increment.cs" />
+    <Compile Include="Language\Framework\Math\LessThan.cs" />
+    <Compile Include="Language\Framework\Math\Multiply.cs" />
+    <Compile Include="Language\Framework\Stack\Clear.cs" />
+    <Compile Include="Language\Framework\Stack\Dup.cs" />
+    <Compile Include="Language\Framework\Stack\Grab.cs" />
+    <Compile Include="Language\Framework\Stack\Parse.cs" />
+    <Compile Include="Language\Framework\Stack\Pop.cs" />
+    <Compile Include="Language\Framework\Stack\Reset.cs" />
+    <Compile Include="Language\Framework\Stack\Swap.cs" />
     <Compile Include="Language\Literals\FunctionLabel.cs" />
     <Compile Include="Language\ILiteral.cs" />
     <Compile Include="Language\Literals\BooleanLiteral.cs" />
@@ -70,9 +80,6 @@
     <Compile Include="Language\Statement.cs" />
     <Compile Include="NetstackRuntime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="spec.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Netstack.Language.Framework.Control
 {
-    class Exec : Function
+    class Eval : Function
     {
         public override void Execute(NetStack stack)
         {

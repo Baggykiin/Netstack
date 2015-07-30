@@ -49,6 +49,13 @@ pulls a statement from the top of the stack and evaluates it:
 	
 	(statement) eval
 
+Note that this is subtly different from other languages, as `eval` does not parse
+plain text. However, this is easily achieved by chaining it together with the 
+`parse` method:
+
+	"5 5 +" parse eval
+
+
 Literals
 -------------
 A literal is a function that always generates the same output. The parser will 

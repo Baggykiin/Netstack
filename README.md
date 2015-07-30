@@ -48,11 +48,11 @@ A literal is a function that always generates the same output. The parser will
 usually translate specific character sequences into literals.
 For instance, the following character sequences will get translated into literals
 
-- "Hello World!"	→ string literal
-- 55				→ integer literal
-- True				→ boolean literal
-- .square			→ function label
-- square			→ late binding function call
+- "Hello World!"	| string literal
+- 55				| integer literal
+- True				| boolean literal
+- .square			| function label
+- square			| late binding function call
 
 The first three should be fairly obvious. 
 The last two are covered in the next chapter.
@@ -82,15 +82,17 @@ An alias is a shorthand character sequence that can be used instead of a
 function call. The interpreter internally translates aliases to function
 calls before executing the application. The aliases available in Netstack are:
 
-- +  → add
-- -  → subtract
-- *  → multiply
-- /  → divide
-- ++ → increment
-- -- → decrement
-- =  → equals
-- <  → less than
-- >  → greater than
+alias|function
+-----|--------
++  | add
+-  | subtract
+*  | multiply
+/  | divide
+++ | increment
+-- | decrement
+=  | equals
+<  | less than
+>  | greater than
 
 It is therefore entirely possible to write
 

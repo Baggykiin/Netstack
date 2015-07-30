@@ -82,15 +82,15 @@ An alias is a shorthand character sequence that can be used instead of a
 function call. The interpreter internally translates aliases to function
 calls before executing the application. The aliases available in Netstack are:
 
-+  -> add
--  -> subtract
-*  -> multiply
-/  -> divide
-++ -> increment
--- -> decrement
-=  -> equals
-<  -> less than
->  -> greater than
+- +  -> add
+- -  -> subtract
+- *  -> multiply
+- /  -> divide
+- ++ -> increment
+- -- -> decrement
+- =  -> equals
+- <  -> less than
+- >  -> greater than
 
 It is therefore entirely possible to write
 

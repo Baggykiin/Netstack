@@ -16,9 +16,15 @@ namespace Netstack.Language
 
         private Dictionary<string, Function> aliasMap = new Dictionary<string, Function>
         {
-            { "+", new Add() },
-            { "=", new Equals() },
-            { "--", new Decrement()}
+            {"+", new Add()},
+            { "-", new Subtract()},
+            {"*",  new Multiply()},
+            {"/", new Divide()},
+            {"++", new Increment()},
+            { "--", new Decrement()},
+            { "=", new Equals()},
+            {"<", new LessThan()},
+            {">", new GreaterThan()}
         };
 
         public Parser()

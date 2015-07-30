@@ -39,7 +39,7 @@ namespace Netstack.Language
         }
         private static IntegerLiteral ParseInteger(string literal)
         {
-            return new IntegerLiteral(int.Parse(literal));
+            return new IntegerLiteral(long.Parse(literal));
         }
         private static StringLiteral ParseString(string literal)
         {

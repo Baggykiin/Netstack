@@ -64,11 +64,11 @@ For instance, the following character sequences will get translated into literal
 
 Character Sequence| Type
 ----------|------------
-- "Hello World!"	| string literal
-- 55				| integer literal
-- True				| boolean literal
-- .square			| function label
-- square			| late binding function call
+"Hello World!"	| string literal
+55				| integer literal
+True				| boolean literal
+.square			| function label
+square			| late binding function call
 
 The first three should be fairly obvious. 
 The last two are covered in the next chapter.

@@ -25,10 +25,10 @@ namespace Repl
                 {
                     try
                     {
-                        stack = runtime.Evaluate(stack, input);
-                        Console.Write("--> ");
+                        stack = runtime.Evaluate(stack.Clear(), input);
                         var previousColour = Console.ForegroundColor;
                         Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("--> ");
                         Console.WriteLine(stack.ToString());
                         Console.ForegroundColor = previousColour;
                     }

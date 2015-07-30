@@ -45,8 +45,9 @@ from the stack, evaluates the first, and uses its result to determine which stat
 should be evaluated next.
 
 A statement may also be evaluated manually, using the `eval` command, which 
-pulls a statement from the top of the stack and evaluates it.
-
+pulls a statement from the top of the stack and evaluates it:
+	
+	(statement) eval
 
 Literals
 -------------
